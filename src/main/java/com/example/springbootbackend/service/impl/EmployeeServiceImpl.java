@@ -47,9 +47,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee getEmployeeById(long id) {
-		Optional<Employee> employee = employeeRepository.findById(id);
-		if(employee.isPresent()) return employee.get();
-		else throw new ResourceNotFoundException("Employee", "Id", id);
+//		Optional<Employee> employee = employeeRepository.findById(id);
+//		if(employee.isPresent()) return employee.get();
+//		else throw new ResourceNotFoundException("Employee", "Id", id);
+		
+		return this.employeeRepository.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Employee", "Id", id) );
+		
 	}
 	
 
