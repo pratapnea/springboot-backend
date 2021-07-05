@@ -1,10 +1,12 @@
 package com.example.springbootbackend.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springbootbackend.exception.ResourceNotFoundException;
 import com.example.springbootbackend.model.Employee;
 import com.example.springbootbackend.repository.EmployeeRepository;
 import com.example.springbootbackend.service.EmployeeService;
@@ -40,6 +42,61 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAllEmployee() {
 		return employeeRepository.findAll();
 	}
+
+
+
+	@Override
+	public Employee getEmployeeById(long id) {
+		Optional<Employee> employee = employeeRepository.findById(id);
+		if(employee.isPresent()) return employee.get();
+		else throw new ResourceNotFoundException("Employee", "Id", id);
+	}
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
