@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee updateEmployee(Employee employee, long userId) {
-		Employee existingEmployee = getEmployeeById(userId);
+		Employee existingEmployee = this.getEmployeeById(userId);
 		
 		existingEmployee.setFirstName(employee.getFirstName());
 		existingEmployee.setLastName(employee.getLastName());

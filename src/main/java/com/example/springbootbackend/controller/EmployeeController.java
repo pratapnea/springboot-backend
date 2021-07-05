@@ -49,14 +49,18 @@ public class EmployeeController {
 	
 	//	build get employee by id REST API
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable (value = "id") long employeeId) {
-		return this.employeeService.getEmployeeById(employeeId);
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable (value = "id") long employeeId) {
+//		return this.employeeService.getEmployeeById(employeeId);
+		
+		return new ResponseEntity<Employee>(employeeService.getEmployeeById(employeeId), HttpStatus.OK);
 	}
 	
 	//	build update employee REST API
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable ("id") long employeeId) {
-		return this.employeeService.updateEmployee(employee, employeeId);
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable ("id") long employeeId) {
+//		return this.employeeService.updateEmployee(employee, employeeId);
+		
+		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, employeeId), HttpStatus.OK);
 	}
 	
 	
