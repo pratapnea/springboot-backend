@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,10 +47,16 @@ public class EmployeeController {
 		return this.employeeService.getAllEmployee();
 	}
 	
-//	build get employee by id REST API
+	//	build get employee by id REST API
 	@GetMapping("/{id}")
 	public Employee getEmployeeById(@PathVariable (value = "id") long employeeId) {
 		return this.employeeService.getEmployeeById(employeeId);
+	}
+	
+	//	build update employee REST API
+	@PutMapping("/{id}")
+	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable ("id") long employeeId) {
+		return this.employeeService.updateEmployee(employee, employeeId);
 	}
 	
 	
