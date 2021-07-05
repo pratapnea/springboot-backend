@@ -46,27 +46,35 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
-	public Employee getEmployeeById(long userId) {
+	public Employee getEmployeeById(long employeeId) {
 //		Optional<Employee> employee = employeeRepository.findById(id);
 //		if(employee.isPresent()) return employee.get();
 //		else throw new ResourceNotFoundException("Employee", "Id", id);
 		
-		return this.employeeRepository.findById(userId)
-				.orElseThrow(()-> new ResourceNotFoundException("Employee", "Id", userId) );
+		return this.employeeRepository.findById(employeeId)
+				.orElseThrow(()-> new ResourceNotFoundException("Employee", "Id", employeeId) );
 		
 	}
 
 
 
 	@Override
-	public Employee updateEmployee(Employee employee, long userId) {
-		Employee existingEmployee = this.getEmployeeById(userId);
+	public Employee updateEmployee(Employee employee, long employeeId) {
+		Employee existingEmployee = this.getEmployeeById(employeeId);
 		
 		existingEmployee.setFirstName(employee.getFirstName());
 		existingEmployee.setLastName(employee.getLastName());
 		existingEmployee.setEmail(employee.getEmail());
 		
 		return this.employeeRepository.save(existingEmployee);
+	}
+
+
+
+	@Override
+	public void deleteEmployee(long employeeId) {
+		Employee existingEmployee = this.getEmployeeById(employeeId);
+		this.employeeRepository.delete(existingEmployee);
 	}
 	
 
