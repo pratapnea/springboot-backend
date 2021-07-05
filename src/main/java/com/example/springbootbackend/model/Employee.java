@@ -1,7 +1,5 @@
 package com.example.springbootbackend.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 
